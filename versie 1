@@ -1,0 +1,110 @@
+#include "KeuzeKnoppen.h"
+#include "Sensor.h"
+#include "pinClass_lib.h"
+
+int Sensorpin = A2;//De waarde van Sensor_Pin wordt gelijkgesteld met die van A2
+
+//Sensor sensor;		//Het programma Sensor wordt overgezet naar sensor
+
+//Sensor sensorS = Sensor(Sensorpin);			// De waarde van Sensor_Pin wordt overgeschreven naar sensor
+
+//float distance = sensorS.GetVolt();	//Sensor waarde vanuit GetVolt overschrijven naar Distance
+
+
+//default constructor
+KeuzeKnoppen::KeuzeKnoppen()
+{
+	
+}
+
+KeuzeKnoppen::KeuzeKnoppen(int Start, int Stop, int Noodstop, int Mode1, int Mode2, int Mode3, int Mode4, Sensor sensorS) //constructor
+: sensorS(Sensorpin)
+{
+	distance = sensorS.GetVolt();	//Sensor waarde vanuit GetVolt overschrijven naar Distance
+
+
+	//this->Start = pinClass(Start, INPUT);
+	//this->Stop = pinClass(Stop, INPUT);
+	//this->Noodstop = pinClass(Noodstop, INPUT);
+	//this->Mode1 = pinClass(Mode1, INPUT);
+	//this->Mode2 = pinClass(Mode2, INPUT);
+	//this->Mode3 = pinClass(Mode3, INPUT);
+	//this->Mode4 = pinClass(Mode4, INPUT);
+	//Keuze(STOP);
+}
+
+int KeuzeKnoppen::Keuze(KeuzeGemaakt keuze) //Functie
+{
+	switch(keuze){
+		case WACHTEN:
+		Serial.println(distance); //Waarde sensor
+		Serial.println("WACHTEN OP KEUZE");	
+		if(distance >= 1.0)
+		{
+			Serial.println("OMLAAG");
+		}
+		else
+		{
+			Serial.println("OMHOOG");
+		}
+		break;
+	
+		case MODE1:
+		Serial.println(distance); //Waarde sensor
+		Serial.println("MODE1");
+		if(distance >= 2.0)
+		{
+			Serial.println("OMLAAG");
+		}
+		else
+		{
+			Serial.println("OMHOOG");
+		}
+		break;
+		
+		case MODE2:
+		Serial.println(distance); //Waarde sensor
+		Serial.println("MODE2");
+		if(distance >= 2.5)
+		{
+			Serial.println("OMLAAG");
+		}
+		else
+		{
+			Serial.println("OMHOOG");
+		}
+		break;
+		
+		case MODE3:
+		Serial.println(distance); //Waarde sensor
+		Serial.println("MODE3");
+		if(distance >= 3.0)
+		{
+			Serial.println("OMLAAG");
+		}
+		else
+		{
+			Serial.println("OMHOOG");
+		}
+		break;
+		
+		case MODE4:
+		Serial.println(distance); //Waarde sensor
+		Serial.println("MODE4");
+		if(distance >= 3.5)
+		{
+			Serial.println("OMLAAG");
+		}
+		else
+		{
+			Serial.println("OMHOOG");
+		}
+		break;
+	};
+}
+
+
+//Default Destructor
+KeuzeKnoppen::~KeuzeKnoppen()
+{
+}
